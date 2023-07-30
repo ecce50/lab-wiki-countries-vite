@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const [countries, setCountries] = useState([]);
@@ -18,10 +19,12 @@ function HomePage() {
   return (
     <>
       <h1>WikiCountries: Your Guide to the World</h1>;
-      {countries.map((aCountry) => {
-          return <p key={aCountry._id}>{aCountry.name.common}</p>;
-          
-      })}
+      {countries.map((aCountry) => (
+        <div key={aCountry._id}>
+              <img src={`https://flagpedia.net/data/flags/icon/72x54/${aCountry.alpha2Code.toLowerCase()}.png`} alt={aCountry.name.common} />  <Link to={aCountry.alpha3Code}>{aCountry.name.common}</Link>
+        </div>
+        
+      ))}
     </>
   );
 }
